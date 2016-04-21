@@ -8,15 +8,29 @@
 
         <compilerflag value='-I${LINC_CHARTBOOST_PATH}/linc/'/>
         <!-- <compilerflag value='-DEMPTY_EXAMPLE_DEFINE_FOR_THE_CPP_CODE'/> -->
-
-        <file name='${LINC_CHARTBOOST_PATH}linc/linc_chartboost.cpp' />
+        
+        <section if="android">
+            <file name='${LINC_CHARTBOOST_PATH}linc/linc_chartboost_android.cpp' />
+        </section>
+        
+        <section if="iphone">
+            <compilerflag value="-F${LINC_CHARTBOOST_PATH}lib"/>
+            <file name='${LINC_CHARTBOOST_PATH}linc/linc_chartboost_iphone.mm' />
+        </section>
 
     </files>
 
     <target id="haxe">
 
         <!-- add linker flags to the haxe build output -->
-
+        <section if="iphone">
+            <flag value="-F${LINC_CHARTBOOST_PATH}lib"/>
+            <vflag name="-framework" value="Chartboost" />
+            <vflag name="-framework" value="StoreKit" />
+            <vflag name="-framework" value="Foundation" />
+            <vflag name="-framework" value="CoreGraphics" />
+            <vflag name="-framework" value="UIKit" />
+        </section>
     </target>
 
 </xml>

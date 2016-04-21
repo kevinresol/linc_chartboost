@@ -1,0 +1,6 @@
+chartboost.ChartboostDelegate
+-java bin
+-dce full
+-java-lib ../chartboost.jar
+-java-lib /usr/local/Cellar/android-sdk/24.4.1_1/platforms/android-23/android.jar
+-cmd mv bin/bin.jar bin/chartboost_delegate.jar
